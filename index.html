@@ -4,136 +4,743 @@
   <meta charset="UTF-8">
   <title>Relax Sounds</title>
   <style>
+    @import url('https://fonts.googleapis.com/css2?family=Montserrat:wght@700;900&display=swap');
     body {
-      font-family: Arial, sans-serif;
-      text-align: center;
-      background: linear-gradient(135deg, #0f2027, #203a43, #2c5364);
+      font-family: 'Montserrat', Arial, sans-serif;
+      background: linear-gradient(120deg, #232526 0%, #414345 100%);
       color: #fff;
       min-height: 100vh;
       margin: 0;
       display: flex;
       flex-direction: column;
       align-items: center;
-      justify-content: center;
+      justify-content: flex-start;
+      padding-top: 40px;
     }
     h1 {
-      margin-bottom: 20px;
+      margin-bottom: 32px;
+      font-size: 2.8rem;
+      font-weight: 900;
+      letter-spacing: 2px;
+      background: linear-gradient(90deg, #1db954, #1ed760, #53ffb0);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      background-clip: text;
+      text-fill-color: transparent;
+      text-shadow: 0 2px 16px rgba(30,217,96,0.2);
     }
     .container {
       display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
-      gap: 20px;
-      width: 90%;
-      max-width: 1000px;
+      grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+      gap: 32px;
+      width: 95%;
+      max-width: 1200px;
+      margin-bottom: 40px;
     }
     .sound {
-      background: rgba(255, 255, 255, 0.1);
-      padding: 20px;
-      border-radius: 15px;
-      box-shadow: 0 4px 15px rgba(0,0,0,0.3);
+      background: rgba(40, 40, 40, 0.7);
+      border-radius: 24px;
+      box-shadow: 0 8px 32px 0 rgba(31, 38, 135, 0.37);
+      backdrop-filter: blur(8px) saturate(180%);
+      -webkit-backdrop-filter: blur(8px) saturate(180%);
+      border: 1px solid rgba(255,255,255,0.12);
+      padding: 32px 24px 28px 24px;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      transition: transform 0.2s, box-shadow 0.2s;
+      position: relative;
+    }
+    .sound:hover {
+      transform: translateY(-8px) scale(1.03);
+      box-shadow: 0 16px 40px 0 rgba(30,217,96,0.18);
+    }
+    .sound p {
+      font-size: 1.5rem;
+      font-weight: 700;
+      margin-bottom: 18px;
+      letter-spacing: 1px;
+      color: #1db954;
+      text-shadow: 0 2px 8px rgba(30,217,96,0.12);
     }
     button {
-      padding: 10px 20px;
-      margin: 10px 0;
+      padding: 14px 36px;
+      margin: 12px 0 18px 0;
       border: none;
-      border-radius: 10px;
+      border-radius: 50px;
       cursor: pointer;
-      background: #4cafef;
-      color: white;
-      font-weight: bold;
-      transition: 0.3s;
+      background: linear-gradient(90deg, #1db954 0%, #1ed760 100%);
+      color: #fff;
+      font-weight: 900;
+      font-size: 1.1rem;
+      letter-spacing: 1px;
+      box-shadow: 0 2px 8px rgba(30,217,96,0.18);
+      transition: background 0.2s, transform 0.2s;
     }
     button:hover {
-      background: #1e88e5;
+      background: linear-gradient(90deg, #1ed760 0%, #1db954 100%);
+      transform: scale(1.07);
     }
     input[type="range"] {
-      width: 100%;
+      width: 90%;
+      margin-top: 8px;
+      accent-color: #1db954;
+      height: 4px;
+      border-radius: 2px;
+      background: #222;
+      outline: none;
+      transition: accent-color 0.2s;
     }
+    input[type="range"]::-webkit-slider-thumb {
+      -webkit-appearance: none;
+      appearance: none;
+      width: 18px;
+      height: 18px;
+      border-radius: 50%;
+      background: #1db954;
+      box-shadow: 0 2px 8px rgba(30,217,96,0.18);
+      cursor: pointer;
+      transition: background 0.2s;
+    }
+    input[type="range"]::-webkit-slider-thumb:hover {
+      background: #1ed760;
+    }
+    input[type="range"]::-moz-range-thumb {
+      width: 18px;
+      height: 18px;
+      border-radius: 50%;
+      background: #1db954;
+      box-shadow: 0 2px 8px rgba(30,217,96,0.18);
+      cursor: pointer;
+      transition: background 0.2s;
+    }
+    input[type="range"]::-moz-range-thumb:hover {
+      background: #1ed760;
+    }
+    input[type="range"]::-ms-thumb {
+      width: 18px;
+      height: 18px;
+      border-radius: 50%;
+      background: #1db954;
+      box-shadow: 0 2px 8px rgba(30,217,96,0.18);
+      cursor: pointer;
+      transition: background 0.2s;
+    }
+    input[type="range"]:focus {
+      outline: none;
+      accent-color: #1ed760;
+    }
+    @media (max-width: 700px) {
+      .container {
+        grid-template-columns: 1fr;
+        gap: 20px;
+      }
+      .sound {
+        padding: 24px 10px 20px 10px;
+      }
+      h1 {
+        font-size: 2rem;
+      }
+    }
+
+    /* Aggiungi queste regole CSS nel blocco <style> già presente */
+
+    /* Falò */
+    /* Sostituisci la vecchia .bonfire, .fire-flames, .flame e @keyframes flameUp con queste */
+.fire-screen {
+  position: fixed;
+  top: 0; left: 0; width: 100vw; height: 100vh;
+  pointer-events: none;
+  z-index: 5;
+  overflow: hidden;
+}
+.fire-flame {
+  position: absolute;
+  bottom: 0;
+  width: 32px;
+  height: 120px;
+  border-radius: 50% 50% 30% 30%;
+  opacity: 0.7;
+  background: radial-gradient(circle at 50% 80%, #fffbe6 0%, #ffb347 40%, #ff7043 80%, #b71c1c 100%);
+  animation: flameScreenUp 2.2s infinite cubic-bezier(.7,0,.3,1);
+  filter: blur(2px);
+  mix-blend-mode: lighten;
+}
+.fire-flame.orange {
+  background: radial-gradient(circle at 50% 80%, #fffbe6 0%, #ffd180 40%, #ff8a65 80%, #c62828 100%);
+  opacity: 0.5;
+  animation-duration: 2.7s;
+}
+.fire-flame.red {
+  background: radial-gradient(circle at 50% 80%, #fffbe6 0%, #ffb74d 40%, #d84315 80%, #b71c1c 100%);
+  opacity: 0.4;
+  animation-duration: 2.9s;
+}
+@keyframes flameScreenUp {
+  0% {
+    transform: translateY(0) scaleX(1) scaleY(1) rotate(-2deg);
+    opacity: 0.7;
+  }
+  30% {
+    opacity: 1;
+    filter: blur(1px);
+  }
+  50% {
+    transform: translateY(-60px) scaleX(1.08) scaleY(1.15) rotate(2deg);
+    opacity: 0.95;
+    filter: blur(0.5px);
+  }
+  80% {
+    opacity: 0.7;
+    filter: blur(2px);
+  }
+  100% {
+    transform: translateY(-140px) scaleX(0.95) scaleY(0.7) rotate(-3deg);
+    opacity: 0;
+    filter: blur(3px);
+  }
+}
+    /* Fine Falò */
+.fire-gif-bg {
+  position: fixed;
+  top: 0; left: 0;
+  width: 100vw;
+  height: 100vh;
+  object-fit: cover;
+  z-index: 10;
+  pointer-events: none;
+  opacity: 0.85;
+}
+
   </style>
 </head>
 <body>
-  <h1>🌙 Relax Sounds</h1>
-  <div class="container">
-    
-    <div class="sound">
-      <p>🌧️ Pioggia</p>
-      <button onclick="toggleSound('rain')">Play/Stop</button>
-      <input type="range" min="0" max="1" step="0.01" value="0.5"
-             oninput="setVolume('rain', this.value)">
-      <audio id="rain" loop src="rain.mp3"></audio>
-    </div>
-
-    <div class="sound">
-      <p>⚡ Temporale</p>
-      <button onclick="toggleSound('storm')">Play/Stop</button>
-      <input type="range" min="0" max="1" step="0.01" value="0.5"
-             oninput="setVolume('storm', this.value)">
-      <audio id="storm" loop preload="metadata" src="sounds/storm.mp3"></audio>
-    </div>
-
-    <div class="sound">
-      <p>🔥 Fuoco</p>
-      <button onclick="toggleSound('fire')">Play/Stop</button>
-      <input type="range" min="0" max="1" step="0.01" value="0.5"
-             oninput="setVolume('fire', this.value)">
-      <audio id="fire" loop src="fire.mp3"></audio>
-    </div>
-
-    <div class="sound">
-      <p>🌲 Natura</p>
-      <button onclick="toggleSound('nature')">Play/Stop</button>
-      <input type="range" min="0" max="1" step="0.01" value="0.5"
-             oninput="setVolume('nature', this.value)">
-      <audio id="nature" loop src="nature.mp3"></audio>
-    </div>
-
-    <div class="sound">
-      <p>🌊 Oceano</p>
-      <button onclick="toggleSound('ocean')">Play/Stop</button>
-      <input type="range" min="0" max="1" step="0.01" value="0.5"
-             oninput="setVolume('ocean', this.value)">
-      <audio id="ocean" loop src="ocean.mp3"></audio>
-    </div>
-
-  </div>
+  <h1 style="display:none">🌙 Relax Sounds</h1>
+  <div id="tiktokContainer"></div>
+  <div id="artistCard" class="artist-card" style="display:none"></div>
 
   <script>
-  let audioContext = null;
-  
-  function initAudio() {
-    if (!audioContext) {
-      audioContext = new (window.AudioContext || window.webkitAudioContext)();
+    // Config suoni
+    const sounds = [
+      {
+        id: 'rain',
+        emoji: '🌧️',
+        name: 'Pioggia',
+        src: 'rain.mp3',
+        desc: 'Il suono rilassante della pioggia che cade, perfetto per concentrarsi o dormire.'
+      },
+      {
+        id: 'storm',
+        emoji: '⚡',
+        name: 'Temporale',
+        src: 'sounds/storm.mp3',
+        desc: 'Un temporale intenso con tuoni e pioggia, per un’atmosfera avvolgente.'
+      },
+      {
+        id: 'fire',
+        emoji: '🔥',
+        name: 'Fuoco',
+        src: 'fire.mp3',
+        desc: 'Il crepitio del fuoco che arde, ideale per rilassarsi e sentirsi al caldo.'
+      },
+      {
+        id: 'nature',
+        emoji: '🌲',
+        name: 'Natura',
+        src: 'nature.mp3',
+        desc: 'Suoni di bosco e natura, per sentirsi immersi nel verde.'
+      },
+      {
+        id: 'ocean',
+        emoji: '🌊',
+        name: 'Oceano',
+        src: 'ocean.mp3',
+        desc: 'Onde dell’oceano che si infrangono, per un relax profondo.'
+      }
+    ];
+
+    let currentPlaying = null;
+    let currentAudio = null;
+
+    // TikTok style: una card a schermo intero, swipe up/down o pulsanti
+    let currentIndex = 0;
+    function renderTikTokCard() {
+      const container = document.getElementById('tiktokContainer');
+      container.innerHTML = '';
+      const sound = sounds[currentIndex];
+      const card = document.createElement('div');
+      card.className = 'tiktok-card';
+      card.innerHTML = `
+        <div class="tiktok-emoji">${sound.emoji}</div>
+        <div class="tiktok-title">${sound.name}</div>
+        <div class="tiktok-desc">${sound.desc}</div>
+        <div class="tiktok-controls">
+          <button onclick="playArtistCard('${sound.id}')">Play</button>
+        </div>
+        <div class="tiktok-nav">
+          <button onclick="prevCard()" class="nav-btn" ${currentIndex === 0 ? 'disabled' : ''}>&uarr;</button>
+          <span>${currentIndex+1} / ${sounds.length}</span>
+          <button onclick="nextCard()" class="nav-btn" ${currentIndex === sounds.length-1 ? 'disabled' : ''}>&darr;</button>
+        </div>
+      `;
+      container.appendChild(card);
     }
-    if (audioContext.state === 'suspended') {
-      audioContext.resume();
+    function prevCard() {
+      if (currentIndex > 0) { currentIndex--; renderTikTokCard(); }
     }
+    function nextCard() {
+      if (currentIndex < sounds.length-1) { currentIndex++; renderTikTokCard(); }
+    }
+    // Swipe gesture (touch)
+    let startY = null;
+    document.addEventListener('touchstart', e => { if(e.touches[0]) startY = e.touches[0].clientY; });
+    document.addEventListener('touchend', e => {
+      if(startY === null) return;
+      const endY = e.changedTouches[0].clientY;
+      if (startY - endY > 60) nextCard();
+      else if (endY - startY > 60) prevCard();
+      startY = null;
+    });
+    // Mouse wheel (desktop)
+    document.addEventListener('wheel', e => {
+      if (document.getElementById('artistCard').style.display === 'flex') return;
+      if (e.deltaY > 40) nextCard();
+      else if (e.deltaY < -40) prevCard();
+    });
+
+    function playArtistCard(id) {
+      // Stop audio precedente
+      if (currentAudio && !currentAudio.paused) {
+        currentAudio.pause();
+        currentAudio.currentTime = 0;
+      }
+      currentPlaying = id;
+      showArtistCard(id);
+    }
+
+    function setVolume(id, volume) {
+      const audio = document.getElementById(id);
+      if (audio) audio.volume = volume;
+    }
+
+    // ...existing code...
+function showArtistCard(id) {
+  const sound = sounds.find(s => s.id === id);
+  const card = document.getElementById('artistCard');
+  card.style.display = 'flex';
+  // Cambia tema in base al suono
+  changeTheme(id);
+  // Effetti extra
+  let extraEffects = '';
+  if (id === 'storm') {
+    extraEffects = `
+      <div class="rain"></div>
+      <div class="lightnings"></div>
+    `;
+  } else if (id === 'fire') {
+    extraEffects = `
+      <img src="fire.gif" alt="Fuoco" class="fire-gif-bg" />
+    `;
   }
-  
-  function toggleSound(id) {
-    initAudio(); // Inizializza il contesto audio
+  card.innerHTML = `
+    <div class="artist-card-content fullscreen">
+      ${extraEffects}
+      <div class="artist-emoji">${sound.emoji}</div>
+      <div class="artist-info">
+        <h2>${sound.name}</h2>
+        <p>${sound.desc}</p>
+        <div class="artist-controls">
+          <button onclick="toggleArtistSound('${sound.id}')" id="artistPlayBtn">Play</button>
+          <input type="range" min="0" max="1" step="0.01" value="0.5" oninput="setVolume('${sound.id}', this.value)">
+        </div>
+        <button class="back-btn" onclick="closeArtistCard()">&larr; Torna indietro</button>
+      </div>
+      <audio id="${sound.id}" loop src="${sound.src}"></audio>
+    </div>
+  `;
+  // Nascondi la card TikTok
+  document.getElementById('tiktokContainer').style.display = 'none';
+  setTimeout(() => {
+    // Autoplay
+    const audio = card.querySelector('audio');
+    if (audio) {
+      audio.volume = 0.5;
+      audio.play();
+      currentAudio = audio;
+    }
+    document.getElementById('artistPlayBtn').textContent = 'Stop';
+    if (id === 'storm') {
+      startRain();
+      startWhiteLightnings();
+    }
+    // Rimuovi startBonfire() se non vuoi più l'effetto fiamme JS
+  }, 100);
+}
+
+    function toggleArtistSound(id) {
+      const card = document.getElementById('artistCard');
+      const audio = card.querySelector('audio');
+      const btn = document.getElementById('artistPlayBtn');
+      if (audio.paused) {
+        audio.play();
+        btn.textContent = 'Stop';
+      } else {
+        audio.pause();
+        audio.currentTime = 0;
+        btn.textContent = 'Play';
+      }
+    }
+
+    function closeArtistCard() {
+      // Stop audio
+      const card = document.getElementById('artistCard');
+      const audio = card.querySelector('audio');
+      if (audio) {
+        audio.pause();
+        audio.currentTime = 0;
+      }
+      card.style.display = 'none';
+      // Mostra la card TikTok
+      document.getElementById('tiktokContainer').style.display = 'flex';
+      currentPlaying = null;
+      resetTheme();
+    }
+
+    // Cambia tema dinamico
+    function changeTheme(id) {
+      const body = document.body;
+      if (id === 'storm') {
+        body.classList.add('theme-storm');
+      } else {
+        body.classList.remove('theme-storm');
+      }
+      // Puoi aggiungere altri temi qui per altri suoni
+    }
+    function resetTheme() {
+      document.body.classList.remove('theme-storm');
+      // Rimuovi altri temi se aggiunti
+      // Rimuovi pioggia, lampi e fuoco
+      const rain = document.querySelector('.rain');
+      if (rain) rain.remove();
+      const lightnings = document.querySelector('.lightnings');
+      if (lightnings) lightnings.remove();
+      const bonfire = document.querySelector('.bonfire');
+      if (bonfire) bonfire.remove();
+    }
+
+
+function resetTheme() {
+  document.body.classList.remove('theme-storm');
+  // Rimuovi altri temi se aggiunti
+  // Rimuovi pioggia, lampi e fuoco
+  const rain = document.querySelector('.rain');
+  if (rain) rain.remove();
+  const lightnings = document.querySelector('.lightnings');
+  if (lightnings) lightnings.remove();
+  const fireScreen = document.querySelector('.fire-screen');
+  if (fireScreen) fireScreen.remove();
+}
+
     
-    const audio = document.getElementById(id);
-    if (audio.paused) {
-      audio.play().catch(error => {
-        console.log('Errore:', error);
-        // Riprova dopo un breve delay
-        setTimeout(() => {
-          audio.play();
-        }, 100);
-      });
-    } else {
-      audio.pause();
-      audio.currentTime = 0;
+
+    // Pioggia animata
+    function startRain() {
+      const rain = document.querySelector('.rain');
+      if (!rain) return;
+      rain.innerHTML = '';
+      for (let i = 0; i < 60; i++) {
+        const drop = document.createElement('div');
+        drop.className = 'raindrop';
+        drop.style.left = Math.random() * 100 + 'vw';
+        drop.style.animationDelay = (Math.random() * 2) + 's';
+        drop.style.animationDuration = (0.7 + Math.random() * 0.7) + 's';
+        rain.appendChild(drop);
+      }
     }
-  }
-  
-  function setVolume(id, volume) {
-    document.getElementById(id).volume = volume;
-  }
-</script>
+    // Lampi bianchi animati
+    function startWhiteLightnings() {
+      const lightnings = document.querySelector('.lightnings');
+      if (!lightnings) return;
+      function createLightning() {
+        const l = document.createElement('div');
+        l.className = 'white-lightning';
+        l.style.left = (Math.random() * 90 + 5) + 'vw';
+        l.style.top = (Math.random() * 60 + 10) + 'vh';
+        l.style.opacity = 0;
+        lightnings.appendChild(l);
+        setTimeout(() => {
+          l.style.opacity = 0.7;
+          l.style.filter = 'blur(2px) drop-shadow(0 0 32px #fff)';
+        }, 10);
+        setTimeout(() => {
+          l.style.opacity = 0;
+        }, 350 + Math.random()*200);
+        setTimeout(() => {
+          l.remove();
+        }, 700);
+      }
+      function loop() {
+        createLightning();
+        setTimeout(loop, 1800 + Math.random()*2000);
+      }
+      // Crea anche qualche lampo all'inizio
+      for (let i = 0; i < 2; i++) setTimeout(createLightning, 400*i);
+      loop();
+    }
+
+  // Prima render
+  renderTikTokCard();
+  </script>
+  <style>
+    #tiktokContainer {
+      width: 100vw;
+      height: 100vh;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      background: transparent;
+      position: relative;
+      overflow: hidden;
+      z-index: 1;
+    }
+    .tiktok-card {
+      width: 100vw;
+      height: 100vh;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      background: rgba(30,30,30,0.98);
+      box-shadow: 0 0 60px 0 #0008;
+      position: absolute;
+      top: 0; left: 0;
+      animation: popIn 0.3s;
+    }
+    .tiktok-emoji {
+      font-size: 6rem;
+      margin-bottom: 24px;
+      filter: drop-shadow(0 2px 16px #1db95455);
+    }
+    .tiktok-title {
+      font-size: 2.2rem;
+      font-weight: 900;
+      color: #1db954;
+      margin-bottom: 18px;
+      letter-spacing: 1px;
+      text-align: center;
+    }
+    .tiktok-desc {
+      font-size: 1.1rem;
+      color: #eee;
+      margin-bottom: 32px;
+      text-align: center;
+      max-width: 400px;
+    }
+    .tiktok-controls {
+      margin-bottom: 32px;
+    }
+    .tiktok-controls button {
+      padding: 16px 48px;
+      font-size: 1.2rem;
+      border-radius: 50px;
+      background: linear-gradient(90deg, #1db954 0%, #1ed760 100%);
+      color: #fff;
+      font-weight: 900;
+      border: none;
+      cursor: pointer;
+      box-shadow: 0 2px 8px rgba(30,217,96,0.18);
+      transition: background 0.2s, transform 0.2s;
+    }
+    .tiktok-controls button:hover {
+      background: linear-gradient(90deg, #1ed760 0%, #1db954 100%);
+      transform: scale(1.07);
+    }
+    .tiktok-nav {
+      display: flex;
+      align-items: center;
+      gap: 18px;
+      position: absolute;
+      bottom: 40px;
+      left: 50%;
+      transform: translateX(-50%);
+    }
+    .nav-btn {
+      font-size: 2rem;
+      background: none;
+      border: none;
+      color: #1db954;
+      cursor: pointer;
+      padding: 0 18px;
+      border-radius: 50%;
+      transition: background 0.2s, color 0.2s;
+    }
+    .nav-btn:disabled {
+      color: #888;
+      cursor: default;
+      opacity: 0.5;
+    }
+    body.theme-storm {
+      background: linear-gradient(120deg, #444 0%, #222 100%) !important;
+      transition: background 0.5s;
+    }
+    .artist-card-content.fullscreen {
+      min-width: 100vw !important;
+      min-height: 100vh !important;
+      max-width: 100vw !important;
+      max-height: 100vh !important;
+      width: 100vw !important;
+      height: 100vh !important;
+      border-radius: 0 !important;
+      box-shadow: none !important;
+      padding: 0 !important;
+      justify-content: center;
+      align-items: center;
+      position: relative;
+      overflow: hidden;
+      background: transparent !important;
+    }
+    /* Pioggia */
+    .rain {
+      position: absolute;
+      top: 0; left: 0; width: 100vw; height: 100vh;
+      pointer-events: none;
+      z-index: 2;
+    }
+    .raindrop {
+      position: absolute;
+      top: -10vh;
+      width: 2px;
+      height: 32px;
+      background: linear-gradient(180deg, #b3e0ff 60%, #fff 100%);
+      opacity: 0.7;
+      border-radius: 1px;
+      animation: raindrop 1.2s linear infinite;
+    }
+    @keyframes raindrop {
+      0% { top: -10vh; opacity: 0.7; }
+      80% { opacity: 0.7; }
+      100% { top: 110vh; opacity: 0; }
+    }
+    /* Lampi bianchi */
+    .lightnings {
+      position: absolute;
+      top: 0; left: 0; width: 100vw; height: 100vh;
+      pointer-events: none;
+      z-index: 3;
+    }
+    .white-lightning {
+      position: absolute;
+      width: 4px;
+      height: 80px;
+      background: linear-gradient(180deg, #fff 60%, #e0e0e0 100%);
+      border-radius: 2px;
+      box-shadow: 0 0 32px 8px #fff;
+      opacity: 0;
+      filter: blur(2px);
+      transition: opacity 0.18s, filter 0.18s;
+    }
+    .sound.playing {
+      border: 2.5px solid #1db954;
+      box-shadow: 0 0 24px 0 #1db95455;
+      background: rgba(40, 60, 40, 0.85);
+      position: relative;
+    }
+    .sound.playing::after {
+      content: 'In riproduzione';
+      position: absolute;
+      top: 18px;
+      right: 24px;
+      background: #1db954;
+      color: #fff;
+      font-size: 0.9rem;
+      padding: 2px 12px;
+      border-radius: 12px;
+      font-weight: bold;
+      opacity: 0.92;
+      letter-spacing: 0.5px;
+    }
+    .artist-card {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      position: fixed;
+      top: 0; left: 0; right: 0; bottom: 0;
+      background: rgba(20, 20, 20, 0.96);
+      z-index: 100;
+      animation: fadeIn 0.3s;
+    }
+    .artist-card-content {
+      background: rgba(40, 40, 40, 0.95);
+      border-radius: 32px;
+      box-shadow: 0 8px 32px 0 rgba(31, 38, 135, 0.37);
+      padding: 48px 36px 36px 36px;
+      display: flex;
+      flex-direction: row;
+      align-items: center;
+      gap: 40px;
+      min-width: 340px;
+      max-width: 600px;
+      width: 90vw;
+      animation: popIn 0.3s;
+    }
+    .artist-emoji {
+      font-size: 5rem;
+      margin-right: 24px;
+      filter: drop-shadow(0 2px 12px #1db95455);
+    }
+    .artist-info h2 {
+      font-size: 2.2rem;
+      font-weight: 900;
+      margin: 0 0 12px 0;
+      color: #1db954;
+      letter-spacing: 1px;
+    }
+    .artist-info p {
+      font-size: 1.1rem;
+      margin-bottom: 24px;
+      color: #eee;
+    }
+    .artist-controls {
+      display: flex;
+      align-items: center;
+      gap: 18px;
+      margin-bottom: 18px;
+    }
+    .back-btn {
+      margin-top: 18px;
+      background: none;
+      color: #1db954;
+      border: 2px solid #1db954;
+      border-radius: 50px;
+      padding: 8px 28px;
+      font-size: 1rem;
+      font-weight: bold;
+      cursor: pointer;
+      transition: background 0.2s, color 0.2s;
+    }
+    .back-btn:hover {
+      background: #1db954;
+      color: #fff;
+    }
+    @keyframes fadeIn {
+      from { opacity: 0; }
+      to { opacity: 1; }
+    }
+    @keyframes popIn {
+      from { transform: scale(0.95); }
+      to { transform: scale(1); }
+    }
+    @media (max-width: 700px) {
+      .artist-card-content {
+        flex-direction: column;
+        gap: 18px;
+        padding: 28px 10px 18px 10px;
+      }
+      .artist-emoji {
+        margin-right: 0;
+        margin-bottom: 12px;
+      }
+    }
+  </style>
 </body>
 </html>
-
-
-
-
