@@ -98,20 +98,40 @@
   </div>
 
   <script>
-    function toggleSound(id) {
-      const audio = document.getElementById(id);
-      if (audio.paused) {
-        audio.play();
-      } else {
-        audio.pause();
-        audio.currentTime = 0;
-      }
+  let audioContext = null;
+  
+  function initAudio() {
+    if (!audioContext) {
+      audioContext = new (window.AudioContext || window.webkitAudioContext)();
     }
-
-    function setVolume(id, volume) {
-      document.getElementById(id).volume = volume;
+    if (audioContext.state === 'suspended') {
+      audioContext.resume();
     }
-  </script>
+  }
+  
+  function toggleSound(id) {
+    initAudio(); // Inizializza il contesto audio
+    
+    const audio = document.getElementById(id);
+    if (audio.paused) {
+      audio.play().catch(error => {
+        console.log('Errore:', error);
+        // Riprova dopo un breve delay
+        setTimeout(() => {
+          audio.play();
+        }, 100);
+      });
+    } else {
+      audio.pause();
+      audio.currentTime = 0;
+    }
+  }
+  
+  function setVolume(id, volume) {
+    document.getElementById(id).volume = volume;
+  }
+</script>
 </body>
 </html>
+
 
